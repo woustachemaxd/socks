@@ -1,0 +1,23 @@
+<script src="/socket.io/socket.io.js"></script>
+
+<input id="chat" type="text" />
+<button id="send">Send</button>
+<ul></ul>
+
+<script>
+  const socket = io("http://localhost:9000");
+  socket.on("messageFromServer", (dataFromServer) => {
+    console.log(dataFromServer);
+  });
+  document.querySelector("#send").addEventListener("click", () => {
+    console.log("senttt!");
+    socket.emit("newMessage", {
+      text: document.querySelector("#chat").value,
+    });
+  });
+  socket.on("messageToClients", (msg) => {
+    document.querySelector("ul").innerHTML += `<li>${msg.text}</li>`;
+  });
+</script>
+
+<!-- socket is the client side socket -->

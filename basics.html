@@ -1,0 +1,15 @@
+<script
+  src="https://cdn.socket.io/4.7.2/socket.io.min.js"
+  integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz"
+  crossorigin="anonymous"
+></script>
+
+<script>
+  // Import Socket.io properly
+  const socket = io("http://localhost:8000");
+  console.log(socket);
+  socket.on("hello", () => {
+    console.log(socket);
+  });
+  socket.emit("messagefromclient", { data: "hello from client" });
+</script>
